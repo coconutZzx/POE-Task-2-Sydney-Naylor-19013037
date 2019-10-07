@@ -8,11 +8,18 @@ namespace Task1_Sydney_Naylor_19013037
 {
     class RangedUnit : Unit  // inherits from unit
     {
-        public RangedUnit(int xPosition, int yPosition, string team) : base(xPosition, yPosition, 100, 2, 15, 2, "Survivors", 'S')
+        public RangedUnit(int xPosition, int yPosition, string team) : base(xPosition, yPosition, 100, 2, 15, 2, team, 'S', "Survivors")
         {
 
         }
-
+        public RangedUnit(string values) : base(values) { }
+        public override string Save()
+        {
+            return string.Format(
+            $"Ranged, {xPosition}, {yPosition}, {health}, {maxHealth}, {speed}, {attack}, {attackRange}," +
+            $"{team}, {image}, {name}, {destroyed}"
+            );
+        }
         public override void Move(Unit closestUnit)
         {
             attacking = false;
@@ -126,12 +133,6 @@ namespace Task1_Sydney_Naylor_19013037
         public override bool Destroyed
         {
             get { return destroyed; }
-        }
-
-        public override string Save()
-        {
-            string info = xPos + "," + yPos + "," + health + "," + team;
-            return info;
         }
 
         //public override double ReturnUnit()
