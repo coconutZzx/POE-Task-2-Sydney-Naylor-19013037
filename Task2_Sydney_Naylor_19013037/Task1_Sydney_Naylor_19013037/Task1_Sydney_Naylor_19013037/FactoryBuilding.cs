@@ -8,12 +8,15 @@ namespace Task1_Sydney_Naylor_19013037
 {
     class FactoryBuilding : Building // this building will create units
     {
-        Unit RangedUnit;
-        Unit MeleeUnit;
+        private FactoryType type;
         private int productionSpeed;
-        private int spawnPoint;
+        private int spawnY;
 
-
+        enum FactoryType
+        {
+            MELEE,
+            RANGED
+        }
         public FactoryBuilding(int xB, int yB, string teamB) : base(xB, yB, 350, "Factory", 'F')
         {
 
