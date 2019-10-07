@@ -16,10 +16,11 @@ namespace Task1_Sydney_Naylor_19013037
         protected int maxHealthB;
         protected string teamB;
         protected char imageB;
-        protected bool destroyedB;
+        protected bool destroyedB = false;
 
         // abstract methods
         public abstract void Destruction();
+        public abstract string Save();
         public override string ToString()
         {
             return ("\nPosition: " + xB + ", " + yB +
@@ -27,48 +28,62 @@ namespace Task1_Sydney_Naylor_19013037
                 "\nImage: " + imageB);
         }
 
-        public abstract string Save();
-
-        
-
         // constructor
         public Building(int xB, int yB, int healthB, string teamB, char imageB )
         {
             this.xB = xB;
             this.yB = yB;
             this.healthB = healthB;
-            maxHealthB = healthB;
+            this.maxHealthB = healthB;
             this.teamB = teamB;
             this.imageB = imageB;
         }
-        
-        public abstract int XB
+
+        public Building() { }
+
+        public int XB
         {
-            get; set;
+            get { return xB; }
         }
-        public abstract int YB
+        public int YB
         {
-            get; set;
+            get { return yB; }
         }
-        public abstract int HealthB
+        public string TeamB
         {
-            get; set;
+            get { return teamB; }
         }
-        public abstract int MaxHealthB
+        public char ImageB
         {
-            get;
+            get { return imageB; }
         }
-        public abstract string TeamB
-        {
-            get;
-        }
-        public abstract char ImageB
-        {
-            get;
-        }
-        public abstract bool Destroyed
-        {
-            get;
-        }
+        //public abstract int XB
+        //{
+        //    get; set;
+        //}
+        //public abstract int YB
+        //{
+        //    get; set;
+        //}
+        //public abstract int HealthB
+        //{
+        //    get; set;
+        //}
+        //public abstract int MaxHealthB
+        //{
+        //    get;
+        //}
+        //public abstract string TeamB
+        //{
+        //    get;
+        //}
+        //public abstract char ImageB
+        //{
+        //    get;
+        //}
+        //public abstract bool Destroyed
+        //{
+        //    get;
+        //}
     }
 }
