@@ -68,7 +68,11 @@ namespace Task1_Sydney_Naylor_19013037
             }
             return mapString;
         }
-
+        public void Clear()
+        {
+            units = new Unit[0];
+            buildings = new Building[0];
+        }
         public void Reset()
         {
             map = new string[MAPSIZE, MAPSIZE];
