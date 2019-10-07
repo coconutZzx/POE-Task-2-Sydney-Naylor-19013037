@@ -16,7 +16,7 @@ namespace Task1_Sydney_Naylor_19013037
         //const int X = 20;
         //const int Y = 20;
 
-        const int MAPSIZE = 20;
+        public const int MAPSIZE = 20;
         Random random = new Random();
         int numberUnits;
         int numberBuildings;
