@@ -99,10 +99,63 @@ namespace Task1_Sydney_Naylor_19013037
                 }
                 StayInBounds(unit, map.Size);
             }
+            UpdateUnits();
+            UpdateBuildings();
             map.UpdateMap();
             round++;
         }
-
+        void UpdateBuildings()
+        {
+            foreach (Building building in map.Buildings)
+            {
+                if (building is FactoryBuilding)
+                {
+                    FactoryBuilding factoryBuilding = (FactoryBuilding)building;
+                    if (round % factoryBuilding.ProductionSpeed == 0)
+                    {
+                        Unit newUnit = factoryBuilding.SpawnUnits();
+                        map.AddUnit(newUnit);
+                    }
+                }
+                else if (building is ResourceBuilding)
+                {
+                    ResourceBuilding resourceBuilding = (ResourceBuilding)building;
+                    resourceBuilding.GenerateResources();
+                }
+            }
+        }
+        void UpdateUnits()
+        {
+            foreach (Unit unit in map.Units)
+            {
+                if (unit.Destroyed)
+                {
+                    continue;
+                }
+                Unit closestUnit = unit.GetClosestUnit(map.Units);
+                if (closestUnit == null)
+                {
+                    gameOver = true;
+                    winningTeam = unit.Team;
+                    map.UpdateMap();
+                    return;
+                }
+                double healthPercentage = unit.Health / unit.MaxHealth;
+                if (healthPercentage <= 0.25)
+                {
+                    unit.RunAway();
+                }
+                else if (unit.InAttackRange(closestUnit))
+                {
+                    unit.Attack(closestUnit);
+                }
+                else
+                {
+                    unit.Move(closestUnit);
+                }
+                StayInBounds(unit, map.Size);
+            }
+        }
         private void StayInBounds(Unit unit, int size)
         {
             if(unit.xPos < 0)
@@ -123,7 +176,7 @@ namespace Task1_Sydney_Naylor_19013037
                 unit.yPos = size - 1;
             }
         }
-
+        
         public void SaveUnitsToFile()
         {
             FileStream uFile = new FileStream("units.txt", FileMode.OpenOrCreate, FileAccess.Write);
