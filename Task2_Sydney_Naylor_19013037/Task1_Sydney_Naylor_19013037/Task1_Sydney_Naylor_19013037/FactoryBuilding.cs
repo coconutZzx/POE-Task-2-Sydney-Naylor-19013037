@@ -8,18 +8,27 @@ namespace Task1_Sydney_Naylor_19013037
 {
     class FactoryBuilding : Building // this building will create units
     {
-        private FactoryType type;
+        private FactoryType fType;
         private int productionSpeed;
-        private int spawnY;
+        private int spawnPoint;
 
         enum FactoryType
         {
             MELEE,
             RANGED
         }
-        public FactoryBuilding(int xB, int yB, string teamB) : base(xB, yB, 350, "Factory", 'F')
+        public FactoryBuilding(int xB, int yB, string teamB) : base(xB, yB, 350, teamB, 'F')
         {
-
+            if (yB >= Map.MAPSIZE - 1)
+            {
+                spawnPoint = yB - 1;
+            }
+            else
+            {
+                spawnPoint = yB + 1;
+            }
+            fType = (FactoryType)GameEngine.random.Next(0, 2);
+            productionSpeed = GameEngine.random.Next(3, 7);
         }
 
         public override void Destruction()  // for when the building gets destroyed
@@ -30,12 +39,24 @@ namespace Task1_Sydney_Naylor_19013037
 
         public override string Save()
         {
-            string info = xB + "," + yB + "," + healthB + "," + teamB;
-            return info;
+            return string.Format(
+                 $"Factory, {xB}, {yB}, {healthB}, {maxHealthB}, {(int)fType}," +
+                 $"{productionSpeed}, {spawnPoint}," +
+                 $"{teamB}, {imageB}, {destroyedB}"
+                                );
         }
-        public void SpawnUnits()
+        public Unit SpawnUnits()
         {
-
+            Unit unit;
+            if (fType == FactoryType.MELEE)
+            {
+                unit = new MeleeUnit(xB, spawnPoint, teamB);
+            }
+            else
+            {
+                unit = new RangedUnit(xB, spawnPoint, teamB);
+            }
+            return unit;
         }
 
         public int ProductionSpeed
