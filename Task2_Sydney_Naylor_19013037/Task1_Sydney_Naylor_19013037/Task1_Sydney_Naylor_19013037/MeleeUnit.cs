@@ -8,7 +8,7 @@ namespace Task1_Sydney_Naylor_19013037
 {
     class MeleeUnit : Unit   // inherits from unit
     {
-        public MeleeUnit(int xPosition, int yPosition, string team) : base(xPosition, yPosition, 200, 1, 50, 1, team, 'Z', "Zombies")
+        public MeleeUnit(int xPosition, int yPosition, string team) : base(xPosition, yPosition, 200, 1, 50, 1, "Zombies", 'Z', "Zombies")
         {
 
         }
