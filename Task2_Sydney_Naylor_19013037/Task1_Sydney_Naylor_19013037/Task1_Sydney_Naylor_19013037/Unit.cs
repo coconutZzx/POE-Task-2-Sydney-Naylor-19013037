@@ -71,7 +71,7 @@ namespace Task1_Sydney_Naylor_19013037
             if (otherUnit.Health <= 0)
             {
                 otherUnit.Health = 0;
-                otherUnit.Destroy();
+                otherUnit.Death();
             }
         }
         public virtual void RunAway()
