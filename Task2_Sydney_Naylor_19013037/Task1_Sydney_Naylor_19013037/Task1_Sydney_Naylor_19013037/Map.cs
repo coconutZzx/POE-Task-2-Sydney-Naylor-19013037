@@ -181,7 +181,22 @@ namespace Task1_Sydney_Naylor_19013037
 
 
         }
+        public void AddUnit(Unit unit)
+        {
+            Unit[] resizeUnits = new Unit[units.Length + 1];
 
+            for (int i = 0; i < units.Length; i++)
+            {
+                resizeUnits[i] = units[i];
+            }
+            resizeUnits[resizeUnits.Length - 1] = unit;
+            units = resizeUnits;
+        }
+        public void AddBuilding(Building building)
+        {
+            Array.Resize(ref buildings, buildings.Length + 1);
+            buildings[buildings.Length - 1] = building;
+        }
 
 
         //public void GenerateBattlefield()
