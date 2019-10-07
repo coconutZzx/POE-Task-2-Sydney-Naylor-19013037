@@ -8,7 +8,7 @@ namespace Task1_Sydney_Naylor_19013037
 {
     class RangedUnit : Unit  // inherits from unit
     {
-        public RangedUnit(int xPosition, int yPosition, string team) : base(xPosition, yPosition, 100, 2, 15, 2, team, 'S', "Survivors")
+        public RangedUnit(int xPosition, int yPosition, string team) : base(xPosition, yPosition, 100, 2, 15, 2, "Survivors", 'S', "Survivors")
         {
 
         }
