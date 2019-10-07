@@ -94,7 +94,7 @@ namespace Task1_Sydney_Naylor_19013037
                 yPosition -= 1;
             }
         }
-        public virtual bool IsInRange(Unit otherUnit)
+        public virtual bool InAttackRange(Unit otherUnit)
         {
             return GetDistance(otherUnit) <= attackRange;
         }
@@ -118,7 +118,7 @@ namespace Task1_Sydney_Naylor_19013037
             }
             return closestUnit;
         }
-        public virtual void Destroy()
+        public virtual void Death()
         {
             destroyed = true;
             attacking = false;
@@ -173,38 +173,38 @@ namespace Task1_Sydney_Naylor_19013037
             return Math.Sqrt(xDistance * xDistance + yDistance * yDistance);
         }
 
-        public int xPos
+        public virtual int xPos
         {
             get { return xPosition; }
             set { xPosition = value; }
         }
-        public int yPos
+        public virtual int yPos
         {
             get { return yPosition; }
             set { yPosition = value; }
         }
-        public int Health
+        public virtual int Health
         {
             get { return health; }
             set { health = value; }
         }
-        public int MaxHealth
+        public virtual int MaxHealth
         {
             get { return maxHealth; }
         }
-        public string Team
+        public virtual string Team
         {
             get { return team; }
         }
-        public char Image
+        public virtual char Image
         {
             get { return image; }
         }
-        public bool Destroyed
+        public virtual bool Destroyed
         {
             get { return destroyed; }
         }
-        public string Name
+        public virtual string Name
         {
             get { return name; }
         }
