@@ -27,7 +27,7 @@ namespace Task1_Sydney_Naylor_19013037
 
 
         // constructor that recieves parameters for every class variable excluding maxHealth
-        public Unit(int xPosition, int yPosition, int health, int speed, int attack, int attackRange, string team, char image)  
+        public Unit(int xPosition, int yPosition, int health, int speed, int attack, int attackRange, string team, char image, string name)  
         {
             this.xPosition = xPosition;
             this.yPosition = yPosition;
@@ -38,6 +38,7 @@ namespace Task1_Sydney_Naylor_19013037
             this.attackRange = attackRange;
             this.team = team;
             this.image = image;
+            this.name = name;
         }
 
 
