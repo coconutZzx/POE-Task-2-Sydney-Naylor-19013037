@@ -8,9 +8,17 @@ namespace Task1_Sydney_Naylor_19013037
 {
     class MeleeUnit : Unit   // inherits from unit
     {
-        public MeleeUnit(int xPosition, int yPosition, string team) : base(xPosition, yPosition, 200, 1, 50, 1, "Zombies", 'Z')
+        public MeleeUnit(int xPosition, int yPosition, string team) : base(xPosition, yPosition, 200, 1, 50, 1, team, 'Z', "Zombies")
         {
 
+        }
+        public MeleeUnit(string values) : base(values) { }
+        public override string Save()
+        {
+            return string.Format(
+            $"Melee, {xPosition}, {yPosition}, {health}, {maxHealth}, {speed}, {attack}, {attackRange}," +
+            $"{team}, {image}, {name}, {destroyed}"
+            );
         }
 
         public override void Move(Unit closestUnit)
@@ -94,13 +102,6 @@ namespace Task1_Sydney_Naylor_19013037
                 yPosition -= 1;
             }
         }
-
-        public override string Save()
-        {
-            string info = xPos + "," + yPos + "," + health + "," + team;
-            return info;
-        }
-
 
         public override int xPos
         {
