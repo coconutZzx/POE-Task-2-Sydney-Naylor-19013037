@@ -30,11 +30,26 @@ namespace Task1_Sydney_Naylor_19013037
             fType = (FactoryType)GameEngine.random.Next(0, 2);
             productionSpeed = GameEngine.random.Next(3, 7);
         }
+        public FactoryBuilding(string values)
+        {
+            string[] parameters = values.Split(',');
+
+            xB = int.Parse(parameters[1]);
+            yB = int.Parse(parameters[2]);
+            healthB = int.Parse(parameters[3]);
+            maxHealthB = int.Parse(parameters[4]);
+            fType = (FactoryType)int.Parse(parameters[5]);
+            productionSpeed = int.Parse(parameters[6]);
+            spawnPoint = int.Parse(parameters[7]);
+            teamB = parameters[8];
+            imageB = parameters[9][0];
+            destroyedB = parameters[10] == "True" ? true : false;
+        }
 
         public override void Destruction()  // for when the building gets destroyed
         {
             destroyedB = true;
-            imageB = 'X';
+            imageB = '_';
         }
 
         public override string Save()
@@ -63,38 +78,51 @@ namespace Task1_Sydney_Naylor_19013037
         {
             get { return productionSpeed; }
         }
+        public string GetFactoryTypeName()
+        {
+            return new string[] { "Melee", "Ranged" }[(int)fType];
+        }
+        public override string ToString()
+        {
+            return
+            "----------------------------------------------" + Environment.NewLine +
+            "Resource Building (" + imageB + "/" + teamB[0] + ")" + Environment.NewLine +
+            "----------------------------------------------" + Environment.NewLine +
+            "Type: " + GetFactoryTypeName() + Environment.NewLine +
+            base.ToString() + Environment.NewLine;
+        }
 
-        public override int XB
-        {
-            get { return xB; }
-            set { xB = value; }
-        }
-        public override int YB
-        {
-            get { return yB; }
-            set { yB = value; }
-        }
-        public override int HealthB
-        {
-            get { return healthB; }
-            set { healthB = value; }
-        }
-        public override int MaxHealthB
-        {
-            get { return maxHealthB; }
-        }
-        public override string TeamB
-        {
-            get { return teamB; }
-        }
-        public override char ImageB
-        {
-            get { return imageB; }
-        }
-        public override bool Destroyed
-        {
-            get { return destroyedB; }
-        }
+        //public override int XB
+        //{
+        //    get { return xB; }
+        //    set { xB = value; }
+        //}
+        //public override int YB
+        //{
+        //    get { return yB; }
+        //    set { yB = value; }
+        //}
+        //public override int HealthB
+        //{
+        //    get { return healthB; }
+        //    set { healthB = value; }
+        //}
+        //public override int MaxHealthB
+        //{
+        //    get { return maxHealthB; }
+        //}
+        //public override string TeamB
+        //{
+        //    get { return teamB; }
+        //}
+        //public override char ImageB
+        //{
+        //    get { return imageB; }
+        //}
+        //public override bool Destroyed
+        //{
+        //    get { return destroyedB; }
+        //}
 
     }
 }
