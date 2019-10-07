@@ -148,6 +148,79 @@ namespace Task1_Sydney_Naylor_19013037
             srw.Close();
             bFile.Close();
         }
+        public void SaveGame()
+        {
+            Save(UNITS_FILENAME, map.Units);
+            Save(BUILDINGS_FILENAME, map.Buildings);
+            SaveRound();
+        }
+        public void LoadGame()
+        {
+            map.Clear();
+            Load(UNITS_FILENAME);
+            Load(BUILDINGS_FILENAME);
+            LoadRound();
+            map.UpdateMap();
+        }
+        private void Load(string filename)
+        {
+            FileStream inFile = new FileStream(filename, FileMode.Open, FileAccess.Read);
+            StreamReader reader = new StreamReader(inFile);
+
+            string recordIn;
+            recordIn = reader.ReadLine();
+            while (recordIn != null)
+            {
+                int length = recordIn.IndexOf(",");
+                string firstField = recordIn.Substring(0, length);
+                switch (firstField)
+                {
+                    case "Melee": map.AddUnit(new MeleeUnit(recordIn)); break;
+                    case "Ranged": map.AddUnit(new RangedUnit(recordIn)); break;
+                    case "Factory": map.AddBuilding(new FactoryBuilding(recordIn)); break;
+                    case "Resource": map.AddBuilding(new ResourceBuilding(recordIn)); break;
+                }
+                recordIn = reader.ReadLine();
+            }
+            reader.Close();
+            inFile.Close();
+        }
+        private void Save(string filename, object[] objects)
+        {
+            FileStream outFile = new FileStream(filename, FileMode.Create, FileAccess.Write);
+            StreamWriter writer = new StreamWriter(outFile);
+            foreach (object obj in objects)
+            {
+                if (obj is Unit)
+                {
+                    Unit unit = (Unit)obj;
+                    writer.WriteLine(unit.Save());
+                }
+                else if (obj is Building)
+                {
+                    Building unit = (Building)obj;
+                    writer.WriteLine(unit.Save());
+                }
+            }
+            writer.Close();
+            outFile.Close();
+        }
+        private void SaveRound()
+        {
+            FileStream outFile = new FileStream(ROUND_FILENAME, FileMode.Create, FileAccess.Write);
+            StreamWriter writer = new StreamWriter(outFile);
+            writer.WriteLine(round);
+            writer.Close();
+            outFile.Close();
+        }
+        private void LoadRound()
+        {
+            FileStream inFile = new FileStream(ROUND_FILENAME, FileMode.Open, FileAccess.Read);
+            StreamReader reader = new StreamReader(inFile);
+            round = int.Parse(reader.ReadLine());
+            reader.Close();
+            inFile.Close();
+        }
 
     }
 }
