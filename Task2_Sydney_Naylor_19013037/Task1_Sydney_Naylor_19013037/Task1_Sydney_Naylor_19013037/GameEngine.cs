@@ -10,6 +10,11 @@ namespace Task1_Sydney_Naylor_19013037
     class GameEngine
     {
         public static Random random = new Random();
+
+        const string UNITS_FILENAME = "units.txt";
+        const string BUILDINGS_FILENAME = "buildings.txt";
+        const string ROUND_FILENAME = "rounds.txt";
+
         Map map;
         bool gameOver = false;
         string winningTeam = "";
@@ -17,7 +22,7 @@ namespace Task1_Sydney_Naylor_19013037
 
         public GameEngine()
         {
-            map = new Map(10, 4);
+            map = new Map(10, 5);
         }
         public bool GameOver
         {
