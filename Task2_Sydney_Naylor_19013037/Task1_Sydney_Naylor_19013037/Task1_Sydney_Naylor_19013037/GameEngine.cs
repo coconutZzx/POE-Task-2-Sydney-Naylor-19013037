@@ -9,6 +9,7 @@ namespace Task1_Sydney_Naylor_19013037
 {
     class GameEngine
     {
+        public static Random random = new Random();
         Map map;
         bool gameOver = false;
         string winningTeam = "";
