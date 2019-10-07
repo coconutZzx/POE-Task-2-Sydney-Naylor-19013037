@@ -66,7 +66,7 @@ namespace Task1_Sydney_Naylor_19013037
         }
         private string GetResourceName()
         {
-            return new string[] { "Wood", "Food", "Rock", "Gold" }[(int)type];
+            return new string[] { "Wood", "Food", "Rock", "Gold" }[(int)rType];
         }
         public override string ToString()
         {
