@@ -25,6 +25,7 @@ namespace Task1_Sydney_Naylor_19013037
             rTxtBox.Text = engine.GetUnitInfo() + engine.GetBuildingInfo();
             //rTxtBox.Text = engine.GetBuildingInfo();
             lblRounds.Text = "Round: " + engine.Round;
+            UpdateUI();
 
             timer = new Timer();
             timer.Interval = 1000/60;
@@ -45,6 +46,7 @@ namespace Task1_Sydney_Naylor_19013037
             rTxtBox.Text = engine.GetUnitInfo() + engine.GetBuildingInfo();
             //rTxtBox.Text = engine.GetBuildingInfo();
             lblRounds.Text = "Round: " + engine.Round;
+            
         }
         public enum GameState
         {
@@ -118,11 +120,13 @@ namespace Task1_Sydney_Naylor_19013037
         {
             engine.SaveUnitsToFile();
             engine.SaveBuidlingsToFile();
+            lblArea.Text = "Game Saved! \n" + lblArea.Text;
         }
 
         private void BtnRead_Click(object sender, EventArgs e)
         {
-
+            engine.LoadGame();
+            
         }
     }
 }
